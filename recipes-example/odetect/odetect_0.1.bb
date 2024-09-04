@@ -1,10 +1,16 @@
-DESCRIPTION = "Simple application using OpenCV"
+DESCRIPTION = "Application for detecting various objects."
 SECTION = "examples"
-LICENSE = "CLOSED"
+
+LIC_FILES_CHKSUM="file://LICENSE;md5=3da9cfbcb788c80a0384361b4de20420"
+LICENSE = "MIT"
+
+# Because of x264 codec and gstreamer1.0-plugins-ugly
+LICENSE_FLAGS = "commercial"
 
 SRC_URI = "file://odetect"
 
-DEPENDS = "opencv gstreamer1.0 gstreamer1.0-plugins-base gstreamer1.0-plugins-bad gstreamer1.0-plugins-good"
+PREFERRED_VERSION_opencv = "4.5.5"
+DEPENDS = "opencv gstreamer1.0 gstreamer1.0-plugins-base gstreamer1.0-plugins-bad gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly x264"
 
 inherit cmake pkgconfig
 

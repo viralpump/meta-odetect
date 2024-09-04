@@ -19,7 +19,7 @@ set(ALL_SOURCES ${SOURCES} ${SOURCES_CAPI})
 find_package(PkgConfig REQUIRED)
 pkg_search_module(GSTREAMER REQUIRED IMPORTED_TARGET gstreamer-1.0)
 pkg_search_module(GSTREAMER-APP REQUIRED IMPORTED_TARGET gstreamer-app-1.0)
-pkg_search_module(OPENCV REQUIRED IMPORTED_TARGET opencv4)
+pkg_search_module(OPENCV REQUIRED IMPORTED_TARGET opencv4>=4.5.5)
 
 add_custom_command(
     OUTPUT ${CMAKE_BINARY_DIR}/model_list.cpp

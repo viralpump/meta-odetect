@@ -1,0 +1,45 @@
+This README file contains information on the contents of the meta-odetect poky layer.
+This layer supports the build of Odetect on various platforms (including x86_64 and arm64) within the Yocto build environment.
+
+ODETECT SPECIFIC DETAILS YOU CAN FIND IN 
+
+Please see the corresponding sections below for details.
+
+Dependencies
+============
+
+  opencv4>=4.5.5
+
+Patches
+=======
+
+Table of Contents
+=================
+
+  I. Adding the meta-odetect layer to your build
+ II. Add odetect to your conf
+
+
+I. Adding the meta-odetect layer to your build
+=================================================
+
+Run 'bitbake-layers add-layer meta-odetect'
+Odetect is a project designed as a detector for testing lightweight DNN models for face detection on embedded systems. The project is built on GStreamer and OpenCV, making it cross-platform. It has been tested on x86_64 and arm64 architectures. Currently, the project only supports CPU-based computation, but support for the Hailo-8L NPU will be added soon. At present, it supports two face detection models:
+
+1. A fast, lightweight face detection model using ResNet-10 with SSD architecture. It delivers good FPS even on a basic Cortex-A76.
+2. The YOLOv5s model for face detection. It runs slowly on a Cortex-A76.
+
+For Odetect to work, it must be connected to any video capture camera via the /dev/videoX interface.
+
+The video is processed frame by frame through the selected model (currently, only CPU is supported), encoded in H264, and sent as an RTP stream over the network.
+
+Planned features:
+1. Integration of Odetect for model computations on the Hailo-8L NPU.
+2. Adding support for video output "to memory."
+3. Adding support for the H265 codec.
+4. Adding a model for license plate detection.
+II. Add odetect to your conf
+========
+
+Add odetect to local.conf of your tocto build as follow:
+IMAGE_INSTALL:append = " odetect"
